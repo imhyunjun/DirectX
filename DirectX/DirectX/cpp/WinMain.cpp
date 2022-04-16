@@ -1,5 +1,5 @@
-﻿#include "Window.h"
-#include "WindowMessageMap.h"
+﻿#include "../header/Window.h"
+#include "../header/WindowMessageMap.h"
 
 /// <param name="hinstance"></param> 인스턴스 : 아이디
 /// <param name="hPrevInstance"></param> 항상 0
