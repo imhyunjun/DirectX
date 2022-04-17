@@ -1,6 +1,7 @@
 #pragma once
 #include "Win.h"
 #include "PException.h"
+#include "./Keyboard.h"
 
 class Window
 {
@@ -45,7 +46,13 @@ private:
 	static LRESULT WINAPI HandleMsgThunk(HWND _hwnd, UINT _msg, WPARAM _wParam, LPARAM _lParam) noexcept;
 	LRESULT HandleMsg(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam) noexcept;
 
+private:
+	int width;
+	int height;
 	HWND hWnd;
+
+public:
+	Keyboard kbd;
 
 };
 

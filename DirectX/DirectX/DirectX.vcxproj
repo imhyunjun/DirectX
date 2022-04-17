@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cpp\Keyboard.cpp" />
     <ClCompile Include="cpp\PException.cpp" />
     <ClCompile Include="cpp\Window.cpp" />
     <ClCompile Include="cpp\WindowMessageMap.cpp" />
     <ClCompile Include="cpp\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\Keyboard.h" />
     <ClInclude Include="header\PException.h" />
     <ClInclude Include="header\Win.h" />
     <ClInclude Include="header\Window.h" />
