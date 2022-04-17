@@ -1,7 +1,9 @@
 #pragma once
 #include "Win.h"
 #include "PException.h"
+#include <sstream>
 #include "./Keyboard.h"
+#include "./Mouse.h"
 
 class Window
 {
@@ -40,6 +42,7 @@ public:
 	~Window();
 	Window(const Window&) = delete;
 	Window& operator=(const Window&) = delete;
+	void SetTitle(const std::string& _title);
 
 private:
 	static LRESULT WINAPI HandleMsgSetup(HWND _hwnd, UINT _msg, WPARAM _wParam, LPARAM _lParam) noexcept;
@@ -53,6 +56,7 @@ private:
 
 public:
 	Keyboard kbd;
+	Mouse mouse;
 
 };
 

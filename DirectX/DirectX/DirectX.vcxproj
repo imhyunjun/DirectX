@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cpp\Keyboard.cpp" />
+    <ClCompile Include="cpp\Mouse.cpp" />
     <ClCompile Include="cpp\PException.cpp" />
     <ClCompile Include="cpp\Window.cpp" />
     <ClCompile Include="cpp\WindowMessageMap.cpp" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Keyboard.h" />
+    <ClInclude Include="header\Mouse.h" />
     <ClInclude Include="header\PException.h" />
     <ClInclude Include="header\Win.h" />
     <ClInclude Include="header\Window.h" />

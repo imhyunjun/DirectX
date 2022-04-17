@@ -38,6 +38,17 @@ int CALLBACK WinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 			{
 				MessageBox(nullptr, "Something Happen", "Space Key is Pressed", MB_OK | MB_ICONEXCLAMATION);
 			}
+
+			while (!wnd.mouse.IsEmpty())
+			{
+				const auto e = wnd.mouse.Read();
+				if (e.GetType() == Mouse::Event::MouseType::Move)
+				{
+					std::ostringstream oss;
+					oss << "MousePostition : (" << e.GetPosX() << " , " << e.GetPosY() << ")";
+					wnd.SetTitle(oss.str());
+				}
+			}
 		}
 
 		if (gResult == -1)
