@@ -116,6 +116,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/std:c++17</AdditionalOptions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -130,6 +132,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/std:c++17</AdditionalOptions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -139,17 +143,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cpp\App.cpp" />
     <ClCompile Include="cpp\Keyboard.cpp" />
     <ClCompile Include="cpp\Mouse.cpp" />
     <ClCompile Include="cpp\PException.cpp" />
     <ClCompile Include="cpp\Window.cpp" />
     <ClCompile Include="cpp\WindowMessageMap.cpp" />
     <ClCompile Include="cpp\WinMain.cpp" />
+    <ClCompile Include="cpp\PTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\App.h" />
     <ClInclude Include="header\Keyboard.h" />
     <ClInclude Include="header\Mouse.h" />
     <ClInclude Include="header\PException.h" />
+    <ClInclude Include="header\PTimer.h" />
     <ClInclude Include="header\Win.h" />
     <ClInclude Include="header\Window.h" />
     <ClInclude Include="header\WindowMessageMap.h" />

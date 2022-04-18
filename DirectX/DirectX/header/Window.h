@@ -4,6 +4,7 @@
 #include <sstream>
 #include "./Keyboard.h"
 #include "./Mouse.h"
+#include <optional>
 
 class Window
 {
@@ -43,6 +44,7 @@ public:
 	Window(const Window&) = delete;
 	Window& operator=(const Window&) = delete;
 	void SetTitle(const std::string& _title);
+	static std::optional<int> ProcessMessage();
 
 private:
 	static LRESULT WINAPI HandleMsgSetup(HWND _hwnd, UINT _msg, WPARAM _wParam, LPARAM _lParam) noexcept;

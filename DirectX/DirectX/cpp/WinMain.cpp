@@ -1,4 +1,4 @@
-﻿#include "../header/Window.h"
+﻿#include "../header/App.h"
 #include "../header/WindowMessageMap.h"
 
 /// <param name="hinstance"></param> 인스턴스 : 아이디
@@ -9,54 +9,7 @@
 int CALLBACK WinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	try {
-		Window wnd(800, 300, "HyunJun First Window");
-		//UpdateWindow(hWnd);
-
-		//메세지 루프
-		MSG msg;
-		BOOL gResult;
-
-		//getmessage -> 메세지를 가져오는 역할, WM_QUIT가 발생할 경우에만 FALSE를 리턴
-		while ((gResult = GetMessage(&msg, NULL, 0, 0)) > 0)
-		{
-			//문자 키 또는 입력에 대해 메세지 반환
-			//WM_KEYDOWN -> WM_CHAR
-			TranslateMessage(&msg);
-
-			//WndProc 함수 호출
-			//WndProc가 종료될때까지 대기
-			//WndProc에 msg 전달
-			DispatchMessageW(&msg);
-
-			/*if (wnd.kbd.KeyIsPressed(VK_SPACE))
-			{
-				MessageBox(nullptr, "Something Happen", "Space Key is Pressed", MB_OK | MB_ICONEXCLAMATION);
-			}*/
-
-			//alt 키 wm_keydown에서 처리 x
-			if (wnd.kbd.KeyIsPressed(VK_MENU))
-			{
-				MessageBox(nullptr, "Something Happen", "Space Key is Pressed", MB_OK | MB_ICONEXCLAMATION);
-			}
-
-			while (!wnd.mouse.IsEmpty())
-			{
-				const auto e = wnd.mouse.Read();
-				if (e.GetType() == Mouse::Event::MouseType::Move)
-				{
-					std::ostringstream oss;
-					oss << "MousePostition : (" << e.GetPosX() << " , " << e.GetPosY() << ")";
-					wnd.SetTitle(oss.str());
-				}
-			}
-		}
-
-		if (gResult == -1)
-		{
-			return -1;
-		}
-
-		return msg.wParam;
+		return App{}.Go();
 	}
 	catch (const PException& _e)
 	{
