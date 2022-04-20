@@ -1,3 +1,37 @@
-﻿  App.cpp
-D:\workspace\C++\DirectX\DirectX\DirectX\cpp\App.cpp(57,12): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿cl : 명령줄 warning D9025: '/std:c++latest'을(를) '/std:c++17'(으)로 재정의합니다.
+  Window.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(59,9): warning C4003: 함수 같은 매크로 호출 'WND_LAST_EXCEPT'에 대해 인수가 부족합니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(88,9): warning C4003: 함수 같은 매크로 호출 'WND_LAST_EXCEPT'에 대해 인수가 부족합니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(95,16): warning C4244: '초기화 중': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\optional(76,17): warning C4244: '초기화 중': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(363): message : 컴파일되는 함수 템플릿 인스턴스화 'std::_Optional_destruct_base<_Ty,true>::_Optional_destruct_base<WPARAM&>(std::in_place_t,WPARAM &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty=int
+          ]
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(363): message : 컴파일되는 함수 템플릿 인스턴스화 'std::_Optional_destruct_base<_Ty,true>::_Optional_destruct_base<WPARAM&>(std::in_place_t,WPARAM &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\optional(192): message : 컴파일되는 함수 템플릿 인스턴스화 'std::_Optional_construct_base<_Ty>::_Optional_construct_base<WPARAM&>(std::in_place_t,WPARAM &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\optional(192): message : 컴파일되는 함수 템플릿 인스턴스화 'std::_Optional_construct_base<_Ty>::_Optional_construct_base<WPARAM&>(std::in_place_t,WPARAM &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty=int
+          ]
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(104): message : 컴파일되는 함수 템플릿 인스턴스화 'std::optional<int>::optional<WPARAM&,0>(_Ty2)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty2=WPARAM &
+          ]
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(104): message : 컴파일되는 함수 템플릿 인스턴스화 'std::optional<int>::optional<WPARAM&,0>(_Ty2)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty2=WPARAM &
+          ]
   DirectX.vcxproj -> D:\workspace\C++\DirectX\DirectX\x64\Debug\DirectX.exe
