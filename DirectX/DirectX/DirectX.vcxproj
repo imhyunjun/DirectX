@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cpp\App.cpp" />
+    <ClCompile Include="cpp\Graphics.cpp" />
     <ClCompile Include="cpp\Keyboard.cpp" />
     <ClCompile Include="cpp\Mouse.cpp" />
     <ClCompile Include="cpp\PException.cpp" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\App.h" />
+    <ClInclude Include="header\Graphics.h" />
     <ClInclude Include="header\Keyboard.h" />
     <ClInclude Include="header\Mouse.h" />
     <ClInclude Include="header\PException.h" />

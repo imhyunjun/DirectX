@@ -4,7 +4,9 @@
 #include <sstream>
 #include "./Keyboard.h"
 #include "./Mouse.h"
+#include "Graphics.h"
 #include <optional>
+#include <memory>
 
 class Window
 {
@@ -45,6 +47,7 @@ public:
 	Window& operator=(const Window&) = delete;
 	void SetTitle(const std::string& _title);
 	static std::optional<int> ProcessMessage();
+	Graphics& Gfx();
 
 private:
 	static LRESULT WINAPI HandleMsgSetup(HWND _hwnd, UINT _msg, WPARAM _wParam, LPARAM _lParam) noexcept;
@@ -55,11 +58,11 @@ private:
 	int width;
 	int height;
 	HWND hWnd;
+	std::unique_ptr<Graphics> pGfx;
 
 public:
 	Keyboard kbd;
 	Mouse mouse;
-
 };
 
 //에러 도움 매크로

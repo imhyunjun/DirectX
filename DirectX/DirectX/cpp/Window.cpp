@@ -74,6 +74,9 @@ Window::Window(int width, int height, const char* name) : width(width), height(h
 
 	// show window
 	ShowWindow(hWnd, SW_SHOWDEFAULT);
+
+	//그래픽 오브젝트
+	pGfx = std::make_unique<Graphics>(hWnd);
 }
 
 Window::~Window()
@@ -122,6 +125,11 @@ std::optional<int> Window::ProcessMessage()
 	}
 
 	return -200;*/
+}
+
+Graphics& Window::Gfx()
+{
+	return *pGfx;
 }
 
 LRESULT WINAPI Window::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
