@@ -69,7 +69,7 @@ Window::Window(int width, int height, const char* name) : width(width), height(h
 
 	if (hWnd == nullptr)
 	{
-		throw WND_LAST_EXCEPT(hr);
+		throw WND_LAST_EXCEPT();
 	}
 
 	// show window
@@ -129,6 +129,11 @@ std::optional<int> Window::ProcessMessage()
 
 Graphics& Window::Gfx()
 {
+	if (!pGfx)
+	{
+		throw HWND_NOFGX_EXCEPT();
+	}
+
 	return *pGfx;
 }
 
@@ -319,22 +324,25 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 //	return DefWindowProc(_hWnd, _msg, _wParam, _lParam); //WndProc가 처리 하지 않은 메시지 처리
 //}
 
-Window::Exception::Exception(int _line, const char* _file, HRESULT _hr) noexcept
-{
-	PException(_line, _file);
-	hr = _hr;
-}
+Window::HrException::HrException(int line, const char* file, HRESULT hr) noexcept
+	:
+	Exception(line, file),
+	hr(hr)
+{}
 
-const char* Window::Exception::what() const noexcept
+const char* Window::HrException::what() const noexcept
 {
 	std::ostringstream oss;
-	oss << GetType() << std::endl << "Error Code : " << GetErrorCode() << std::endl
-		<< "Description : " << GetErrorString() << std:: endl << GetOriginString() << std::endl;
+	oss << GetType() << std::endl
+		<< "[Error Code] 0x" << std::hex << std::uppercase << GetErrorCode()
+		<< std::dec << " (" << (unsigned long)GetErrorCode() << ")" << std::endl
+		<< "[Description] " << GetErrorDescription() << std::endl
+		<< GetOriginString();
 	whatBuffer = oss.str();
 	return whatBuffer.c_str();
 }
 
-const char* Window::Exception::GetType() const noexcept
+const char* Window::HrException::GetType() const noexcept
 {
 	return "Winodw Exception";
 }
@@ -358,12 +366,17 @@ std::string Window::Exception::TranslateErrorCode(HRESULT _hr) noexcept
 	return errorString;
 }
 
-HRESULT Window::Exception::GetErrorCode() const noexcept
+HRESULT Window::HrException::GetErrorCode() const noexcept
 {
 	return hr;
 }
 
-std::string Window::Exception::GetErrorString() const noexcept
+std::string Window::HrException::GetErrorDescription() const noexcept
 {
-	return TranslateErrorCode(hr);
+	return Window::Exception::TranslateErrorCode(hr);
+}
+
+const char* Window::NoGfxException::GetType() const noexcept
+{
+	return "GFX Exception";
 }
