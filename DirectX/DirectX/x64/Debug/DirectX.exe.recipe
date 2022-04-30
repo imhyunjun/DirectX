@@ -5,7 +5,14 @@
       <FullPath>D:\workspace\C++\DirectX\DirectX\x64\Debug\DirectX.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles />
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>D:\workspace\C++\DirectX\DirectX\DirectX\PixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\workspace\C++\DirectX\DirectX\DirectX\VertexShader.cso</FullPath>
+    </ContentFile>
+  </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>

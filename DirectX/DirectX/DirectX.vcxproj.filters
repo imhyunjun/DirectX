@@ -108,4 +108,8 @@
       <Filter>헤더 파일</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="shader\VertexShader.hlsl" />
+    <FxCompile Include="shader\PixelShader.hlsl" />
+  </ItemGroup>
 </Project>
