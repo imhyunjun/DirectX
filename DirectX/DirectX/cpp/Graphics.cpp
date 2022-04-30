@@ -97,7 +97,7 @@ void Graphics::ClearBuffer(float _red, float _green, float _blue)
 	pContext->ClearRenderTargetView(pTarget.Get(), color);
 }
 
-void Graphics::DrawTestTriangle()
+void Graphics::DrawTestTriangle(float _angle)
 {
 	namespace wrl = Microsoft::WRL;
 
@@ -105,15 +105,53 @@ void Graphics::DrawTestTriangle()
 
 	struct Vertex
 	{
-		float x;
-		float y;
+		struct
+		{
+			float x;
+			float y;
+		}pos;
+		struct
+		{
+			unsigned char r;
+			unsigned char g;
+			unsigned char b;
+			unsigned char a;
+		}color;
 	};
 
 	const Vertex vertices[] =
 	{
-		{ 0.0f, 0.5f },
-		{ 0.5f, -0.5f },
-		{ -0.5f, -0.5f }
+		//시계 방향(삼각형)
+		/*{ 1.0f, -1.0f, 1.0f, 0.0f, 0.0f },
+		{ 0.4f, -0.7f, 0.0f, 1.0f, 0.0f },
+		{ 0.3f, 0.8f, 0.0f, 0.0f, 1.0f },*/
+
+		/*{ 1.0f, -1.0f, 255, 0, 0, 255},
+		{ 0.4f, -0.7f, 0, 255, 0, 255 },
+		{ 0.3f, 0.8f, 0, 0, 255, 255 },*/
+
+
+		//선 하나에 무조건 점 두개씩(linelist)
+		/*{ 1.0f, -1.0f },
+		{ 0.4f, -0.7f },
+		{ 0.4f, -0.7f },
+		{ 0.3f, 0.8f },
+		{ 0.3f, 0.8f },
+		{ 1.0f, -1.0f },*/
+
+		//점 네개로 선을 긋는 것(linestrip)
+		//{ 1.0f, -1.0f },
+		//{ 0.4f, -0.7f },
+		//{ 0.3f, 0.8f },
+		//{ 1.0f, -1.0f },
+
+		//인덱스 사용 Draw 대신 DrawIndexed 사용
+		{0.5f, 1.0f, 255, 0, 0, 0},
+		{0.8f, 0.8f, 0, 255, 0, 0},
+		{0.8f, -0.8f, 0, 0, 255, 0},
+		{0.5f, -1.0f, 0, 0, 255, 0},
+		{0.2f, -0.8f, 0, 255, 0, 0},
+		{0.2f, 0.8f, 255, 0, 0, 0},
 	};
 
 	wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
@@ -129,7 +167,6 @@ void Graphics::DrawTestTriangle()
 	sd.pSysMem = vertices;
 	GFX_THROW_INFO(pDevice->CreateBuffer(&bd, &sd, &pVertexBuffer));
 
-
 	//VertexShader를 파이프라인에 주입
 	const UINT stride = sizeof(Vertex);
 	const UINT offset = 0u;
@@ -137,6 +174,64 @@ void Graphics::DrawTestTriangle()
 
 	wrl::ComPtr<ID3DBlob> pBlob;
 
+	//인덱스 버퍼 만들기
+	const unsigned short indices[] =
+	{
+		0,1,2,
+		0,2,4,
+		2,3,4,
+		0,4,5
+	};
+	wrl::ComPtr<ID3D11Buffer> pIndexBuffer;
+	D3D11_BUFFER_DESC ibd = {};
+	ibd.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	ibd.ByteWidth = sizeof(indices);
+	ibd.Usage = D3D11_USAGE_DEFAULT;
+	ibd.CPUAccessFlags = 0u;
+	ibd.MiscFlags = 0u;
+	ibd.StructureByteStride = sizeof(unsigned short);
+
+	D3D11_SUBRESOURCE_DATA isd = {};
+	isd.pSysMem = indices;
+	GFX_THROW_INFO(pDevice->CreateBuffer(&ibd, &isd, &pIndexBuffer));
+
+	//인덱스 버퍼 묶기
+	pContext->IASetIndexBuffer(pIndexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0u);
+
+	//constant버퍼 만들기(변환)
+	struct ConstantBuffer
+	{
+		struct
+		{
+			float element[4][4];
+		}transformation;
+	};
+
+	const ConstantBuffer cb =
+	{
+		{
+			(3.0f / 4.0f) * std::cos(_angle), std::sin(_angle), 0.0f, 0.0f,
+			(3.0f / 4.0f) * -std::sin(_angle), std::cos(_angle), 0.0f, 0.0f,
+			0.0f, 0.0f, 1.0f, 0.0f,
+			0.0f, 0.0f, 0.0f, 1.0f
+		}
+	};
+
+	wrl::ComPtr<ID3D11Buffer> pConstantBuffer;
+	D3D11_BUFFER_DESC cbd = {};
+	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbd.ByteWidth = sizeof(cb);
+	cbd.Usage = D3D11_USAGE_DYNAMIC;	//Lock function 사용 가능,  non-dynamic에 UpdateSubresource로 업데이트 가능
+	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cbd.MiscFlags = 0u;
+	cbd.StructureByteStride = 0u;
+
+	D3D11_SUBRESOURCE_DATA csd = {};
+	csd.pSysMem = &cb;
+	GFX_THROW_INFO(pDevice->CreateBuffer(&cbd, &csd, &pConstantBuffer));
+
+	//constant 버퍼 묶기(vs에 묶음)
+	pContext->VSSetConstantBuffers(0, 1, pConstantBuffer.GetAddressOf());
 
 	//PS 만들기(픽셀 셰이더)
 	wrl::ComPtr<ID3D11PixelShader> pPixelShader;
@@ -156,7 +251,9 @@ void Graphics::DrawTestTriangle()
 	wrl::ComPtr<ID3D11InputLayout> pInputLayout;
 	const D3D11_INPUT_ELEMENT_DESC ied[] =
 	{
-		{"POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0}
+		{"POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+		//{"COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 8u, D3D11_INPUT_PER_VERTEX_DATA, 0}
+		{"COLOR", 0, DXGI_FORMAT_R8G8B8A8_UNORM, 0, 8u, D3D11_INPUT_PER_VERTEX_DATA, 0}
 	};//세번째 형식 중요!
 
 	GFX_THROW_INFO(pDevice->CreateInputLayout(
@@ -173,18 +270,23 @@ void Graphics::DrawTestTriangle()
 
 	//기본 도형을 삼각형으로
 	pContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	//pContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_LINELIST);
+	//pContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_LINESTRIP);
 
 	//뷰포트
 	D3D11_VIEWPORT vp;
+	//뷰포트 크기
 	vp.Width = 800;
 	vp.Height = 600;
 	vp.MinDepth = 0;
 	vp.MaxDepth = 1;
+	//뷰포트 좌상단 좌표
 	vp.TopLeftX = 0;
 	vp.TopLeftY = 0;
 	pContext->RSSetViewports(1u, &vp);
 
-	GFX_THROW_INFO_ONLY(pContext->Draw(std::size(vertices), 0u));		//그릴 점의 개수, 시작 점
+	//GFX_THROW_INFO_ONLY(pContext->Draw(std::size(vertices), 0u));		//그릴 점의 개수, 시작 점
+	GFX_THROW_INFO_ONLY(pContext->DrawIndexed(std::size(indices), 0u, 0u));		
 }
 
 Graphics::HrException::HrException(int _line, const char* _file, HRESULT _hr, std::vector<std::string> infoMsgs) noexcept

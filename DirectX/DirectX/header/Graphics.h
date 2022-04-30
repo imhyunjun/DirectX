@@ -58,7 +58,7 @@ public:
 	void EndFrame();
 	void ClearBuffer(float _red, float _green, float _blue);
 
-	void DrawTestTriangle();
+	void DrawTestTriangle(float _angle);
 
 private:
 #ifndef NDEBUG
