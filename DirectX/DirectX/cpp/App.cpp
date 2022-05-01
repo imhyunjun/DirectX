@@ -79,7 +79,7 @@ void App::DoFrame()
 	const float c = sin(timer.Peek()) / 2.0f + 0.5f;
 	wnd.Gfx().ClearBuffer(c, c, 1.0f);
 	//wnd.Gfx().DrawTestTriangle(-timer.Peek(), 0.0f, 0.0f);
-	wnd.Gfx().DrawTestTriangle(timer.Peek(), (wnd.mouse.GetPosX() - 400) / 800, -(wnd.mouse.GetPosY() - 300) / 600);
+	wnd.Gfx().DrawTestTriangle(timer.Peek(), (wnd.mouse.GetPosX() - 400.f) / 800.f, -(wnd.mouse.GetPosY() - 300.f) / 600.f);
 
 	wnd.Gfx().EndFrame();
 }
