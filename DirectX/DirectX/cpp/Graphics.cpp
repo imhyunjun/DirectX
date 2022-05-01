@@ -2,8 +2,12 @@
 #include <sstream>
 #include "../dxerr.h"
 #include <d3dcompiler.h>
+#include <cmath>
+#include <DirectXMath.h>
 
 namespace wrl = Microsoft::WRL;
+namespace dx = DirectX;
+
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "D3DCompiler.lib")
@@ -27,8 +31,8 @@ namespace wrl = Microsoft::WRL;
 Graphics::Graphics(HWND _hWnd)
 {
 	DXGI_SWAP_CHAIN_DESC sd = {};
-	sd.BufferDesc.Width = 0;
-	sd.BufferDesc.Height = 0;
+	sd.BufferDesc.Width = 800;
+	sd.BufferDesc.Height = 600;
 	sd.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
 	sd.BufferDesc.RefreshRate.Numerator = 0;
 	sd.BufferDesc.RefreshRate.Denominator = 1;
@@ -70,6 +74,40 @@ Graphics::Graphics(HWND _hWnd)
 	wrl::ComPtr<ID3D11Resource> pBackBuffer = nullptr;
 	GFX_THROW_INFO(pSwap->GetBuffer(0, __uuidof(ID3D11Resource), &pBackBuffer));
 	GFX_THROW_INFO(pDevice->CreateRenderTargetView(pBackBuffer.Get(), nullptr, &pTarget));
+
+	//depth stensil state 생성
+	D3D11_DEPTH_STENCIL_DESC dsDesc = {};
+	dsDesc.DepthEnable = TRUE;
+	dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
+	wrl::ComPtr<ID3D11DepthStencilState> pDSState;
+	GFX_THROW_INFO(pDevice->CreateDepthStencilState(&dsDesc, &pDSState));
+
+	//depth state 묶기
+	pContext->OMSetDepthStencilState(pDSState.Get(), 1u);
+
+	//depth state texture 생성
+	wrl::ComPtr<ID3D11Texture2D> pDepthStencil;
+	D3D11_TEXTURE2D_DESC descDepth = {};
+	descDepth.Width = 800;
+	descDepth.Height = 600;		//너비와 높이는 swapchain과 같아야 한다
+	descDepth.MipLevels = 1u;
+	descDepth.ArraySize = 1u;
+	descDepth.Format = DXGI_FORMAT_D32_FLOAT;
+	descDepth.SampleDesc.Count = 1u;
+	descDepth.SampleDesc.Quality = 0u;
+	descDepth.Usage = D3D11_USAGE_DEFAULT;
+	descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	GFX_THROW_INFO(pDevice->CreateTexture2D(&descDepth, nullptr, &pDepthStencil));
+
+	//depth stensil texture view 생성
+	D3D11_DEPTH_STENCIL_VIEW_DESC descDSV = {};
+	descDSV.Format = DXGI_FORMAT_D32_FLOAT;
+	descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	descDSV.Texture2D.MipSlice = 0u;
+	GFX_THROW_INFO(pDevice->CreateDepthStencilView(pDepthStencil.Get(), &descDSV, &pDSV));
+
+	pContext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), pDSV.Get());
 }
 
 void Graphics::EndFrame()
@@ -95,12 +133,15 @@ void Graphics::ClearBuffer(float _red, float _green, float _blue)
 {
 	const float color[] = { _red, _green, _blue, 1.0f };
 	pContext->ClearRenderTargetView(pTarget.Get(), color);
+	pContext->ClearDepthStencilView(pDSV.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
 }
 
-void Graphics::DrawTestTriangle(float _angle)
+void Graphics::DrawTestTriangle(float _angle, float _x, float _z)
 {
-	namespace wrl = Microsoft::WRL;
-
+	//dx::XMVECTOR v = dx::XMVectorSet(3.0f, 3.0f, 0.0f, 0.0f);
+	//auto result = dx::XMVector4Dot(v, v);		//내적하면 스칼라가 아닌 벡터로 반환( 스칼라 * (1, 1, 1, 1))
+	//auto result = dx::XMVector4Transform(v, dx::XMMatrixScaling(1.5f, 2.0f, 0.f));
+	//xmvector은 윈도우 x64에선 16바이트 정렬이지만 윈도우 x86에선 8바이트 정렬
 	HRESULT hr;
 
 	struct Vertex
@@ -109,14 +150,15 @@ void Graphics::DrawTestTriangle(float _angle)
 		{
 			float x;
 			float y;
+			float z;
 		}pos;
-		struct
+		/*struct
 		{
 			unsigned char r;
 			unsigned char g;
 			unsigned char b;
 			unsigned char a;
-		}color;
+		}color;*/
 	};
 
 	const Vertex vertices[] =
@@ -146,12 +188,22 @@ void Graphics::DrawTestTriangle(float _angle)
 		//{ 1.0f, -1.0f },
 
 		//인덱스 사용 Draw 대신 DrawIndexed 사용
-		{0.5f, 1.0f, 255, 0, 0, 0},
+		/*{0.5f, 1.0f, 255, 0, 0, 0},
 		{0.8f, 0.8f, 0, 255, 0, 0},
 		{0.8f, -0.8f, 0, 0, 255, 0},
 		{0.5f, -1.0f, 0, 0, 255, 0},
 		{0.2f, -0.8f, 0, 255, 0, 0},
-		{0.2f, 0.8f, 255, 0, 0, 0},
+		{0.2f, 0.8f, 255, 0, 0, 0},*/
+
+		{-1.0f, -1.0f, -1.0f},
+		{1.0f, -1.0f, -1.0f},
+		{-1.0f, 1.0f, -1.0f},
+		{1.0f, 1.0f, -1.0f},
+		{-1.0f, -1.0f, 1.0f},
+		{1.0f, -1.0f, 1.0f},
+		{-1.0f, 1.0f, 1.0f},
+		{1.0f, 1.0f, 1.0f},
+
 	};
 
 	wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
@@ -177,10 +229,16 @@ void Graphics::DrawTestTriangle(float _angle)
 	//인덱스 버퍼 만들기
 	const unsigned short indices[] =
 	{
-		0,1,2,
+		/*0,1,2,
 		0,2,4,
 		2,3,4,
-		0,4,5
+		0,4,5*/
+		0,2,1, 2,3,1,
+		1,3,5, 3,7,5,
+		2,6,3, 3,6,7,
+		4,5,7, 4,7,6,
+		0,4,2, 2,4,6,
+		0,1,4, 1,5,4,
 	};
 	wrl::ComPtr<ID3D11Buffer> pIndexBuffer;
 	D3D11_BUFFER_DESC ibd = {};
@@ -201,19 +259,31 @@ void Graphics::DrawTestTriangle(float _angle)
 	//constant버퍼 만들기(변환)
 	struct ConstantBuffer
 	{
-		struct
+		/*struct
 		{
 			float element[4][4];
-		}transformation;
+		}transformation;*/
+
+		dx::XMMATRIX transform;
 	};
 
 	const ConstantBuffer cb =
 	{
 		{
-			(3.0f / 4.0f) * std::cos(_angle), std::sin(_angle), 0.0f, 0.0f,
+			/*(3.0f / 4.0f) * std::cos(_angle), std::sin(_angle), 0.0f, 0.0f,
 			(3.0f / 4.0f) * -std::sin(_angle), std::cos(_angle), 0.0f, 0.0f,
 			0.0f, 0.0f, 1.0f, 0.0f,
-			0.0f, 0.0f, 0.0f, 1.0f
+			0.0f, 0.0f, 0.0f, 1.0f*/
+			/*dx::XMMatrixMultiply(
+				dx::XMMatrixRotationZ(_angle),
+				dx::XMMatrixScaling(3.0f/4.0f, 1.0f, 1.0f))*/
+			dx::XMMatrixTranspose(
+			dx::XMMatrixRotationZ(_angle) *
+			dx::XMMatrixRotationX(_angle) *
+			dx::XMMatrixScaling(1.0f, 1.0f, 1.0f) *
+			dx::XMMatrixTranslation(_x, 0.0f, _angle + 4.0f) *
+			dx::XMMatrixPerspectiveLH(1.0f, 3.0f / 4.0f, 0.5f, 10.0f)
+			)
 		}
 	};
 
@@ -233,6 +303,44 @@ void Graphics::DrawTestTriangle(float _angle)
 	//constant 버퍼 묶기(vs에 묶음)
 	pContext->VSSetConstantBuffers(0, 1, pConstantBuffer.GetAddressOf());
 
+	struct ConstantBuffer2
+	{
+		struct
+		{
+			float r;
+			float g;
+			float b;
+			float a;
+		}face_colors[6];
+	};
+	const ConstantBuffer2 cb2 =
+	{
+		{
+			{1.0f, 0.0f, 1.0f},
+			{1.0f, 0.0f, 0.0f},
+			{0.0f, 1.0f, 0.0f},
+			{0.0f, 0.0f, 1.0f},
+			{1.0f, 1.0f, 0.0f},
+			{0.0f, 1.0f, 1.0f},
+		}
+	};
+
+	wrl::ComPtr<ID3D11Buffer> pConstantBuffer2;
+	D3D11_BUFFER_DESC cbd2 = {};
+	cbd2.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbd2.ByteWidth = sizeof(cb2);
+	cbd2.Usage = D3D11_USAGE_DEFAULT;
+	cbd2.CPUAccessFlags = 0u;
+	cbd2.MiscFlags = 0u;
+	cbd2.StructureByteStride = 0u;
+
+	D3D11_SUBRESOURCE_DATA csd2 = {};
+	csd2.pSysMem = &cb2;
+	GFX_THROW_INFO(pDevice->CreateBuffer(&cbd2, &csd2, &pConstantBuffer2));
+
+	//constant 버퍼 묶기(ps에 묶음)
+	pContext->PSSetConstantBuffers(0, 1, pConstantBuffer2.GetAddressOf());
+
 	//PS 만들기(픽셀 셰이더)
 	wrl::ComPtr<ID3D11PixelShader> pPixelShader;
 	GFX_THROW_INFO(D3DReadFileToBlob(L"PixelShader.cso", &pBlob));
@@ -251,9 +359,9 @@ void Graphics::DrawTestTriangle(float _angle)
 	wrl::ComPtr<ID3D11InputLayout> pInputLayout;
 	const D3D11_INPUT_ELEMENT_DESC ied[] =
 	{
-		{"POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
 		//{"COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 8u, D3D11_INPUT_PER_VERTEX_DATA, 0}
-		{"COLOR", 0, DXGI_FORMAT_R8G8B8A8_UNORM, 0, 8u, D3D11_INPUT_PER_VERTEX_DATA, 0}
+		//{"COLOR", 0, DXGI_FORMAT_R8G8B8A8_UNORM, 0, 12u, D3D11_INPUT_PER_VERTEX_DATA, 0}
 	};//세번째 형식 중요!
 
 	GFX_THROW_INFO(pDevice->CreateInputLayout(
@@ -266,7 +374,7 @@ void Graphics::DrawTestTriangle(float _angle)
 	pContext->IASetInputLayout(pInputLayout.Get());
 
 	//렌더 타겟
-	pContext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), nullptr);
+	//pContext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), pDSV.Get());
 
 	//기본 도형을 삼각형으로
 	pContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -286,7 +394,7 @@ void Graphics::DrawTestTriangle(float _angle)
 	pContext->RSSetViewports(1u, &vp);
 
 	//GFX_THROW_INFO_ONLY(pContext->Draw(std::size(vertices), 0u));		//그릴 점의 개수, 시작 점
-	GFX_THROW_INFO_ONLY(pContext->DrawIndexed(std::size(indices), 0u, 0u));		
+	GFX_THROW_INFO_ONLY(pContext->DrawIndexed(std::size(indices), 0u, 0u));
 }
 
 Graphics::HrException::HrException(int _line, const char* _file, HRESULT _hr, std::vector<std::string> infoMsgs) noexcept
@@ -378,7 +486,7 @@ const char* Graphics::InfoException::what() const noexcept
 	oss << GetType() << std::endl
 		<< "\n[Error Info]\n" << GetErrorInfo() << std::endl << std::endl;
 	oss << GetOriginString();
-		
+
 
 	whatBuffer = oss.str();
 	return whatBuffer.c_str();

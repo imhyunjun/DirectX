@@ -58,14 +58,15 @@ public:
 	void EndFrame();
 	void ClearBuffer(float _red, float _green, float _blue);
 
-	void DrawTestTriangle(float _angle);
+	void DrawTestTriangle(float _angle, float _x, float _z);
 
 private:
 #ifndef NDEBUG
 	DxgiInfoManager infoManager;
 #endif
-	Microsoft::WRL::ComPtr<ID3D11Device> pDevice = nullptr;
-	Microsoft::WRL::ComPtr<IDXGISwapChain> pSwap = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> pTarget = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11Device> pDevice;
+	Microsoft::WRL::ComPtr<IDXGISwapChain> pSwap;
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext;
+	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> pTarget;
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> pDSV;
 };
