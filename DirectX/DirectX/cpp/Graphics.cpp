@@ -99,13 +99,13 @@ Graphics::Graphics(HWND _hWnd)
 	//ºäÆ÷Æ®
 	D3D11_VIEWPORT vp;
 	//ºäÆ÷Æ® Å©±â
-	vp.Width = 800;
-	vp.Height = 600;
-	vp.MinDepth = 0;
-	vp.MaxDepth = 1;
+	vp.Width = 800.f;
+	vp.Height = 600.f;
+	vp.MinDepth = 0.f;
+	vp.MaxDepth = 1.f;
 	//ºäÆ÷Æ® ÁÂ»ó´Ü ÁÂÇ¥
-	vp.TopLeftX = 0;
-	vp.TopLeftY = 0;
+	vp.TopLeftX = 0.f;
+	vp.TopLeftY = 0.f;
 	pContext->RSSetViewports(1u, &vp);
 }
 
@@ -137,7 +137,7 @@ void Graphics::ClearBuffer(float _red, float _green, float _blue)
 
 void Graphics::DrawIndexed(UINT _count) noexcept(!IS_DEBUG)
 {
-	GFX_THROW_INFO_ONLY(pContext->DrawIndexed(3u, 0u, 0u));
+	GFX_THROW_INFO_ONLY(pContext->DrawIndexed(_count, 0u, 0u));
 }
 
 void Graphics::SetProjection(DirectX::FXMMATRIX _proj) noexcept

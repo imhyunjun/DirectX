@@ -9,12 +9,11 @@ IndexBuffer::IndexBuffer(Graphics& _gfx, const std::vector<unsigned short>& _ind
 
 	D3D11_BUFFER_DESC ibd = {};
 	ibd.BindFlags = D3D11_BIND_INDEX_BUFFER;
-	ibd.ByteWidth = sizeof(count * sizeof(unsigned short));
+	ibd.ByteWidth = UINT(count * sizeof(unsigned short));
 	ibd.Usage = D3D11_USAGE_DEFAULT;
 	ibd.CPUAccessFlags = 0u;
 	ibd.MiscFlags = 0u;
 	ibd.StructureByteStride = sizeof(unsigned short);
-
 	D3D11_SUBRESOURCE_DATA isd = {};
 	isd.pSysMem = _indices.data();
 	GFX_THROW_INFO(GetDevice(_gfx)->CreateBuffer(&ibd, &isd, &pIndexBuffer));
