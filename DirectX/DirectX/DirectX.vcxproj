@@ -114,7 +114,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IS_DEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalOptions>/std:c++17</AdditionalOptions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -130,7 +130,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IS_DEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalOptions>/std:c++17</AdditionalOptions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -144,6 +144,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cpp\App.cpp" />
+    <ClCompile Include="cpp\Bindable\Bindable.cpp" />
+    <ClCompile Include="cpp\Bindable\IndexBuffer.cpp" />
+    <ClCompile Include="cpp\Bindable\InputLayout.cpp" />
+    <ClCompile Include="cpp\Bindable\PixelShader.cpp" />
+    <ClCompile Include="cpp\Bindable\Topology.cpp" />
+    <ClCompile Include="cpp\Bindable\TransfromCBuf.cpp" />
+    <ClCompile Include="cpp\Bindable\VertexBuffer.cpp" />
+    <ClCompile Include="cpp\Bindable\VertexShader.cpp" />
+    <ClCompile Include="cpp\Drawable\Box.cpp" />
+    <ClCompile Include="cpp\Drawable\Drawable.cpp" />
     <ClCompile Include="cpp\DxgiInfoManager.cpp" />
     <ClCompile Include="cpp\Graphics.cpp" />
     <ClCompile Include="cpp\Keyboard.cpp" />
@@ -158,8 +168,21 @@
   <ItemGroup>
     <ClInclude Include="dxerr.h" />
     <ClInclude Include="header\App.h" />
+    <ClInclude Include="header\Bindable\Bindable.h" />
+    <ClInclude Include="header\Bindable\BindableBase.h" />
+    <ClInclude Include="header\Bindable\ConstantBuffers.h" />
+    <ClInclude Include="header\Bindable\IndexBuffer.h" />
+    <ClInclude Include="header\Bindable\InputLayout.h" />
+    <ClInclude Include="header\Bindable\PixelShader.h" />
+    <ClInclude Include="header\Bindable\Topology.h" />
+    <ClInclude Include="header\Bindable\TransformCbuf.h" />
+    <ClInclude Include="header\Bindable\VertexBuffer.h" />
+    <ClInclude Include="header\Bindable\VertexShader.h" />
+    <ClInclude Include="header\Drawable\Box.h" />
+    <ClInclude Include="header\Drawable\Drawable.h" />
     <ClInclude Include="header\DxgiInfoManager.h" />
     <ClInclude Include="header\Graphics.h" />
+    <ClInclude Include="header\Macros\GraphicThrowMacros.h" />
     <ClInclude Include="header\Keyboard.h" />
     <ClInclude Include="header\Mouse.h" />
     <ClInclude Include="header\PException.h" />
@@ -167,6 +190,7 @@
     <ClInclude Include="header\Win.h" />
     <ClInclude Include="header\Window.h" />
     <ClInclude Include="header\WindowMessageMap.h" />
+    <ClInclude Include="header\Macros\WindowThrowMacros.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

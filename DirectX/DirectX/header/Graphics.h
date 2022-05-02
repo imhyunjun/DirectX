@@ -5,9 +5,14 @@
 #include <vector>
 #include <wrl.h>		//Com ptr
 #include "DxgiInfoManager.h"
+#include <d3dcompiler.h>
+#include <DirectXMath.h>
+#include <memory>
+#include <random>
 
 class Graphics
 {
+	friend class Bindable;
 public:
 	class Exception : public PException
 	{
@@ -58,9 +63,16 @@ public:
 	void EndFrame();
 	void ClearBuffer(float _red, float _green, float _blue);
 
-	void DrawTestTriangle(float _angle, float _x, float _z);
+	void DrawIndexed(UINT _count) noexcept(!IS_DEBUG);
+	void SetProjection(DirectX::FXMMATRIX _proj) noexcept;
+	DirectX::XMMATRIX GetProjection() const noexcept;
 
 private:
+	DirectX::XMMATRIX projection;
+
+	//void DrawTestTriangle(float _angle, float _x, float _z);
+
+//private:
 #ifndef NDEBUG
 	DxgiInfoManager infoManager;
 #endif

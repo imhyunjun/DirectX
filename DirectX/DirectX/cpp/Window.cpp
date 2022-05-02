@@ -2,6 +2,7 @@
 #include <sstream>
 #include <Windows.h>
 #include "../resource.h"
+#include "../header/Macros/WindowThrowMacros.h"
 
 Window::WindowClass Window::WindowClass::wndClass;
 

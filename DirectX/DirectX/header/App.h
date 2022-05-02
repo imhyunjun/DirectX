@@ -8,9 +8,11 @@ public:
 	App();
 	//마스터 프레임, 메시지 루프
 	int Go();
+	~App();
 	void DoFrame();
 
 private:
 	Window wnd;
 	PTimer timer;
+	std::vector<std::unique_ptr<class Box>> boxes;
 };
