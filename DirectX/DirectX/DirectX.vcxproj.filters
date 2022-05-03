@@ -158,6 +158,9 @@
     <ClInclude Include="header\Drawable\Box.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="header\Drawable\DrawableBase.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX.rc">

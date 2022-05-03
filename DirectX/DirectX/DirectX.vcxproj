@@ -114,7 +114,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>IS_DEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IS_DEBUG = true</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalOptions>/std:c++17</AdditionalOptions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -130,7 +130,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>IS_DEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IS_DEBUG = false</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalOptions>/std:c++17</AdditionalOptions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -180,6 +180,7 @@
     <ClInclude Include="header\Bindable\VertexShader.h" />
     <ClInclude Include="header\Drawable\Box.h" />
     <ClInclude Include="header\Drawable\Drawable.h" />
+    <ClInclude Include="header\Drawable\DrawableBase.h" />
     <ClInclude Include="header\DxgiInfoManager.h" />
     <ClInclude Include="header\Graphics.h" />
     <ClInclude Include="header\Macros\GraphicThrowMacros.h" />

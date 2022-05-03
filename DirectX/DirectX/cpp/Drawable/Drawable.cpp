@@ -10,6 +10,11 @@ void Drawable::Draw(Graphics& _gfx) const noexcept(!IS_DEBUG)
 	{
 		b->Bind(_gfx);
 	}
+
+	for (auto& b : GetStaticBinds())
+	{
+		b->Bind(_gfx);
+	}
 	_gfx.DrawIndexed(pIndexBuffer->GetCount());
 }
 
