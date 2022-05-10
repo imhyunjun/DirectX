@@ -1,5 +1,80 @@
 ﻿cl : 명령줄 warning D9025: '/std:c++latest'을(를) '/std:c++17'(으)로 재정의합니다.
   App.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\Drawable.h(17,44): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\Drawable.h(21,58): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Bindable\Bindable.h(13,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(10,1): error C2272: 'IsStaticInitialized': 정적 멤버 함수에 한정자를 사용할 수 없습니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(53): message : 컴파일되는 클래스 템플릿 인스턴스화 'DrawableBase<T>'에 대한 참조를 확인하세요.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(14,71): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(14,71): error C3861: 'IS_DEBUG': 식별자를 찾을 수 없습니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(21,74): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(21,74): error C3861: 'IS_DEBUG': 식별자를 찾을 수 없습니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(29,38): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(29,38): error C3861: 'IS_DEBUG': 식별자를 찾을 수 없습니다.
+  Bindable.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Bindable\Bindable.h(13,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Bindable\Bindable.cpp(13,69): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+  IndexBuffer.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Bindable\Bindable.h(13,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+  InputLayout.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Bindable\Bindable.h(13,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+  PixelShader.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Bindable\Bindable.h(13,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+  Topology.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Bindable\Bindable.h(13,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+  TransfromCBuf.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Bindable\Bindable.h(13,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\Drawable.h(17,44): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\Drawable.h(21,58): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+  VertexBuffer.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Bindable\Bindable.h(13,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+  VertexShader.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Bindable\Bindable.h(13,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
   Box.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\Drawable.h(17,44): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\Drawable.h(21,58): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Bindable\Bindable.h(13,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(10,1): error C2272: 'IsStaticInitialized': 정적 멤버 함수에 한정자를 사용할 수 없습니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(53): message : 컴파일되는 클래스 템플릿 인스턴스화 'DrawableBase<T>'에 대한 참조를 확인하세요.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(14,71): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(14,71): error C3861: 'IS_DEBUG': 식별자를 찾을 수 없습니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(21,74): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(21,74): error C3861: 'IS_DEBUG': 식별자를 찾을 수 없습니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(29,38): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\DrawableBase.h(29,38): error C3861: 'IS_DEBUG': 식별자를 찾을 수 없습니다.
+  Drawable.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\Drawable.h(17,44): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Drawable\Drawable.h(21,58): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Bindable\Bindable.h(13,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Drawable\Drawable.cpp(7,53): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Drawable\Drawable.cpp(21,67): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+  DxgiInfoManager.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+  Graphics.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Graphics.cpp(138,51): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+  Keyboard.cpp
+  Mouse.cpp
+  PException.cpp
+  Window.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(99,16): warning C4244: '초기화 중': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  WindowMessageMap.cpp
+  WinMain.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\header\Graphics.h(66,42): error C2065: 'IS_DEBUG': 선언되지 않은 식별자입니다.
+  PTimer.cpp
   코드를 생성하고 있습니다...
-  DirectX.vcxproj -> D:\workspace\C++\DirectX\DirectX\x64\Debug\DirectX.exe
+  컴파일하고 있습니다...
+  dxerr.cpp
+  코드를 생성하고 있습니다...

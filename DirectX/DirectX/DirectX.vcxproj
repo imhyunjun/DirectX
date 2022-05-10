@@ -114,7 +114,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>IS_DEBUG = true</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IS_DEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalOptions>/std:c++17</AdditionalOptions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -182,7 +182,9 @@
     <ClInclude Include="header\Drawable\Drawable.h" />
     <ClInclude Include="header\Drawable\DrawableBase.h" />
     <ClInclude Include="header\DxgiInfoManager.h" />
+    <ClInclude Include="header\Figure\IndexedTriangleList.h" />
     <ClInclude Include="header\Graphics.h" />
+    <ClInclude Include="header\LHJMath.h" />
     <ClInclude Include="header\Macros\GraphicThrowMacros.h" />
     <ClInclude Include="header\Keyboard.h" />
     <ClInclude Include="header\Mouse.h" />
