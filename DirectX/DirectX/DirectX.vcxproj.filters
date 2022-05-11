@@ -167,6 +167,15 @@
     <ClInclude Include="header\LHJMath.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="header\Figure\Cone.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Figure\Cube.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Figure\Plane.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX.rc">

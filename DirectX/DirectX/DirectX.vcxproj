@@ -182,7 +182,10 @@
     <ClInclude Include="header\Drawable\Drawable.h" />
     <ClInclude Include="header\Drawable\DrawableBase.h" />
     <ClInclude Include="header\DxgiInfoManager.h" />
+    <ClInclude Include="header\Figure\Cone.h" />
+    <ClInclude Include="header\Figure\Cube.h" />
     <ClInclude Include="header\Figure\IndexedTriangleList.h" />
+    <ClInclude Include="header\Figure\Plane.h" />
     <ClInclude Include="header\Graphics.h" />
     <ClInclude Include="header\LHJMath.h" />
     <ClInclude Include="header\Macros\GraphicThrowMacros.h" />
