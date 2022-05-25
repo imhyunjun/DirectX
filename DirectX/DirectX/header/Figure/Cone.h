@@ -20,7 +20,7 @@ public:
 		for (int iLong = 0; iLong < _longDiv; iLong++)
 		{
 			vertices.emplace_back();
-			auto v = dx::XMVector3Transform(base, dx::XMMatrixRotationZ(longitudeAngle * iLong);
+			auto v = dx::XMVector3Transform(base, dx::XMMatrixRotationZ(longitudeAngle * iLong));
 			dx::XMStoreFloat3(&vertices.back().pos, v);
 		}
 

@@ -8,7 +8,8 @@ public:
 		std::uniform_real_distribution<float>& _adist,
 		std::uniform_real_distribution<float>& _ddist,
 		std::uniform_real_distribution<float>& _odist,
-		std::uniform_real_distribution<float>& _rdist);
+		std::uniform_real_distribution<float>& _rdist,
+		std::uniform_real_distribution<float>& _bdist);
 	void Update(float dt) noexcept override;
 	DirectX::XMMATRIX GetTransformXM() const noexcept override;
 private:
@@ -27,4 +28,6 @@ private:
 	float dtheta;
 	float dphi;
 	float dchi;
+
+	DirectX::XMFLOAT3X3 mt;
 };

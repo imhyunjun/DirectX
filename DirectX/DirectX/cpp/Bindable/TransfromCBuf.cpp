@@ -22,4 +22,4 @@ void TransformCbuf::Bind(Graphics& _gfx) noexcept
 }
 
 //스태틱이라 아래에 선언
-std::unique_ptr<VertexConstantBuffer<DirectX::XMMATRIX>> pVcBuf;
+std::unique_ptr<VertexConstantBuffer<DirectX::XMMATRIX>>  TransformCbuf::pVcBuf;

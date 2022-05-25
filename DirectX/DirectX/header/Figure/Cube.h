@@ -13,14 +13,14 @@ public:
 		constexpr float side = 1.0f / 2.0f;
 
 		std::vector<dx::XMFLOAT3> vertices;
-		vertices.emplace(-side, -side, -side);
-		vertices.emplace(side, -side, -side);
-		vertices.emplace(-side, side, -side);
-		vertices.emplace(side, side, -side);
-		vertices.emplace(-side, -side, side);
-		vertices.emplace(side, -side, side);
-		vertices.emplace(-side, side, side);
-		vertices.emplace(side, side, side);
+		vertices.emplace_back(-side, -side, -side);
+		vertices.emplace_back(side, -side, -side);
+		vertices.emplace_back(-side, side, -side);
+		vertices.emplace_back(side, side, -side);
+		vertices.emplace_back(-side, -side, side);
+		vertices.emplace_back(side, -side, side);
+		vertices.emplace_back(-side, side, side);
+		vertices.emplace_back(side, side, side);
 
 		std::vector<V> verts(vertices.size());
 		for (size_t i = 0; i < vertices.size(); i++)
