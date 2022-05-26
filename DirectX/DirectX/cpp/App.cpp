@@ -6,6 +6,8 @@
 #include "../header/Drawable/Pyramid.h"
 #include <algorithm>
 #include "../header/LHJMath.h"
+#include "../header/Surface.h"
+#include "../header/GDIPlusManager.h"
 
 App::App() : wnd(800, 600, "HyunJun First Window")
 {
@@ -56,6 +58,10 @@ App::App() : wnd(800, 600, "HyunJun First Window")
 	Factory f(wnd.Gfx());
 	drawables.reserve(nDrawables);
 	std::generate_n(std::back_inserter(drawables), nDrawables, f);
+
+	//TODO : 텍스쳐 경로문제 해결
+	const auto s = Surface::FromFile(".\\..\\..\\Images\\Dorasyeoda.png");
+
 	wnd.Gfx().SetProjection(DirectX::XMMatrixPerspectiveLH(1.0f, 3.0f / 4.0f, 0.5f, 40.0f));
 }
 

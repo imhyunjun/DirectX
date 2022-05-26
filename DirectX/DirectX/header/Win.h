@@ -5,6 +5,7 @@
 #include <sdkddkver.h>
 
 //윈도우 사용하지 않는 것들
+#ifndef FULL_WINTARD
 #define WIN32_LEAN_AND_MEAN
 #define NOGDICAPMASKS
 #define NOSYSMETRICS
@@ -22,7 +23,7 @@
 #define NONLS
 #define NOMEMMGR
 #define NOMETAFILE
-#define NOMINMAX
+
 #define NOOPENFILE
 #define NOSCROLL
 #define NOSERVICE
@@ -39,7 +40,9 @@
 #define NOPROXYSTUB
 #define NOIMAGE
 #define NOTAPE
+#endif
 
+#define NOMINMAX
 #define STRICT
 
 #include <Windows.h> 

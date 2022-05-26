@@ -157,10 +157,12 @@
     <ClCompile Include="cpp\Drawable\Melon.cpp" />
     <ClCompile Include="cpp\Drawable\Pyramid.cpp" />
     <ClCompile Include="cpp\DxgiInfoManager.cpp" />
+    <ClCompile Include="cpp\GDIPlusManager.cpp" />
     <ClCompile Include="cpp\Graphics.cpp" />
     <ClCompile Include="cpp\Keyboard.cpp" />
     <ClCompile Include="cpp\Mouse.cpp" />
     <ClCompile Include="cpp\PException.cpp" />
+    <ClCompile Include="cpp\Surface.cpp" />
     <ClCompile Include="cpp\Window.cpp" />
     <ClCompile Include="cpp\WindowMessageMap.cpp" />
     <ClCompile Include="cpp\WinMain.cpp" />
@@ -192,6 +194,7 @@
     <ClInclude Include="header\Figure\Plane.h" />
     <ClInclude Include="header\Figure\Prism.h" />
     <ClInclude Include="header\Figure\Sphere.h" />
+    <ClInclude Include="header\GDIPlusManager.h" />
     <ClInclude Include="header\Graphics.h" />
     <ClInclude Include="header\LHJMath.h" />
     <ClInclude Include="header\Macros\GraphicThrowMacros.h" />
@@ -199,6 +202,7 @@
     <ClInclude Include="header\Mouse.h" />
     <ClInclude Include="header\PException.h" />
     <ClInclude Include="header\PTimer.h" />
+    <ClInclude Include="header\Surface.h" />
     <ClInclude Include="header\Win.h" />
     <ClInclude Include="header\Window.h" />
     <ClInclude Include="header\WindowMessageMap.h" />
@@ -210,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon1.ico" />
+    <Image Include="Images\Dorasyeoda.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DXGetErrorDescription.inl" />
