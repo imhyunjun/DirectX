@@ -1,8 +1,38 @@
 ﻿cl : 명령줄 warning D9025: '/std:c++latest'을(를) '/std:c++17'(으)로 재정의합니다.
-  imgui.cpp
-  imgui_demo.cpp
-  imgui_draw.cpp
-  imgui_impl_dx11.cpp
+  App.cpp
+  Window.cpp
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(103,16): warning C4244: '초기화 중': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\optional(76,17): warning C4244: '초기화 중': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(393): message : 컴파일되는 함수 템플릿 인스턴스화 'std::_Optional_destruct_base<_Ty,true>::_Optional_destruct_base<WPARAM&>(std::in_place_t,WPARAM &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty=int
+          ]
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(393): message : 컴파일되는 함수 템플릿 인스턴스화 'std::_Optional_destruct_base<_Ty,true>::_Optional_destruct_base<WPARAM&>(std::in_place_t,WPARAM &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\optional(192): message : 컴파일되는 함수 템플릿 인스턴스화 'std::_Optional_construct_base<_Ty>::_Optional_construct_base<WPARAM&>(std::in_place_t,WPARAM &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\optional(192): message : 컴파일되는 함수 템플릿 인스턴스화 'std::_Optional_construct_base<_Ty>::_Optional_construct_base<WPARAM&>(std::in_place_t,WPARAM &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty=int
+          ]
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(111): message : 컴파일되는 함수 템플릿 인스턴스화 'std::optional<int>::optional<WPARAM&,0>(_Ty2)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty2=WPARAM &
+          ]
+D:\workspace\C++\DirectX\DirectX\DirectX\cpp\Window.cpp(111): message : 컴파일되는 함수 템플릿 인스턴스화 'std::optional<int>::optional<WPARAM&,0>(_Ty2)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty2=WPARAM &
+          ]
   imgui_impl_win32.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\prsht.h(140,46): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\prsht.h(140,24): error C2146: 구문 오류: ';'이(가) 'PROPSHEETPAGE_RESOURCE' 식별자 앞에 없습니다.
@@ -24,6 +54,4 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\prsht.h(271,5): e
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\prsht.h(271,5): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\commctrl.h(7869,65): error C2061: 구문 오류: 식별자 'LPSCROLLINFO'
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um\commctrl.h(7884,64): error C2061: 구문 오류: 식별자 'LPSCROLLINFO'
-  imgui_tables.cpp
-  imgui_widgets.cpp
   코드를 생성하고 있습니다...

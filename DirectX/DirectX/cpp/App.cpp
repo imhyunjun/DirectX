@@ -8,6 +8,9 @@
 #include "../header/LHJMath.h"
 #include "../header/Surface.h"
 #include "../header/GDIPlusManager.h"
+#include "../imgui/imgui.h"
+#include "../imgui/imgui_impl_dx11.h"
+#include "../imgui/imgui_impl_win32.h"
 
 App::App() : wnd(800, 600, "HyunJun First Window")
 {
@@ -60,7 +63,7 @@ App::App() : wnd(800, 600, "HyunJun First Window")
 	std::generate_n(std::back_inserter(drawables), nDrawables, f);
 
 	//TODO : 텍스쳐 경로문제 해결
-	const auto s = Surface::FromFile("kappa50.png");
+	//const auto s = Surface::FromFile("kappa50.png");
 
 	wnd.Gfx().SetProjection(DirectX::XMMatrixPerspectiveLH(1.0f, 3.0f / 4.0f, 0.5f, 40.0f));
 }
@@ -140,5 +143,20 @@ void App::DoFrame()
 		d->Update(dt);
 		d->Draw(wnd.Gfx());
 	}
+
+	//imgui
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	static bool show_demo_window = true;
+	if (show_demo_window)
+	{
+		ImGui::ShowDemoWindow(&show_demo_window);
+	}
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
+	//표시
 	wnd.Gfx().EndFrame();
 }

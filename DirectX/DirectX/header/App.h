@@ -1,6 +1,7 @@
 #pragma once
 #include "Window.h"
 #include "PTimer.h"
+#include "ImguiManager.h"
 
 class App
 {
@@ -12,6 +13,7 @@ public:
 	void DoFrame();
 
 private:
+	ImguiManager imgui;
 	Window wnd;
 	PTimer timer;
 	std::vector<std::unique_ptr<class Box>> boxes;

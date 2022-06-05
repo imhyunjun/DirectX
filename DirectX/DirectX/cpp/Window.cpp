@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include "../resource.h"
 #include "../header/Macros/WindowThrowMacros.h"
+#include "../imgui/imgui_impl_win32.h"
 
 Window::WindowClass Window::WindowClass::wndClass;
 
@@ -76,12 +77,15 @@ Window::Window(int width, int height, const char* name) : width(width), height(h
 	// show window
 	ShowWindow(hWnd, SW_SHOWDEFAULT);
 
+	ImGui_ImplWin32_Init(hWnd);
+
 	//그래픽 오브젝트
 	pGfx = std::make_unique<Graphics>(hWnd);
 }
 
 Window::~Window()
 {
+	ImGui_ImplWin32_Shutdown();
 	DestroyWindow(hWnd);
 }
 
@@ -167,6 +171,11 @@ LRESULT WINAPI Window::HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM
 
 LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
+	{
+		return true;
+	}
+
 	switch (msg)
 	{
 	case WM_CLOSE:

@@ -159,6 +159,7 @@
     <ClCompile Include="cpp\DxgiInfoManager.cpp" />
     <ClCompile Include="cpp\GDIPlusManager.cpp" />
     <ClCompile Include="cpp\Graphics.cpp" />
+    <ClCompile Include="cpp\ImguiManager.cpp" />
     <ClCompile Include="cpp\Keyboard.cpp" />
     <ClCompile Include="cpp\Mouse.cpp" />
     <ClCompile Include="cpp\PException.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="header\Figure\Sphere.h" />
     <ClInclude Include="header\GDIPlusManager.h" />
     <ClInclude Include="header\Graphics.h" />
+    <ClInclude Include="header\ImguiManager.h" />
     <ClInclude Include="header\LHJMath.h" />
     <ClInclude Include="header\Macros\GraphicThrowMacros.h" />
     <ClInclude Include="header\Keyboard.h" />
@@ -229,6 +231,7 @@
   <ItemGroup>
     <Image Include="icon1.ico" />
     <Image Include="Images\Dorasyeoda.png" />
+    <Image Include="Images\kappa50.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DXGetErrorDescription.inl" />
